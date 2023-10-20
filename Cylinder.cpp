@@ -1,42 +1,42 @@
 #include "Cylinder.h"
+#include <iostream>
 
-//------------------------------------------------------------------------------
-Cylinder::Cylinder()
-    :Cylinder(1, 1)
-{
+// Constructors
+Cylinder::Cylinder() : radius(0), height(0) {
+    boundingBox.setUpperRightVertex(0, 0, height);
 }
 
-//------------------------------------------------------------------------------
-Cylinder::Cylinder(double r, double h)
-    :Polyhedron("Cylinder"),
-     height(h),
-     radius(r)
-{
-    double d = this->getDiameter();
-    boundingBox.setUpperRightVertex(d, d, height);
-
-    // **Note** the upper-right vertex of the bounding box must be set to
-    // (diameter, diameter, height).
-    //
-    // The z-axis is treated as the height of the
-    // cylinder and the x-y plane is the "floor" where the circular face of the
-    // cylinder rests.
+Cylinder::Cylinder(double radius, double height) : radius(radius), height(height) {
+    boundingBox.setUpperRightVertex(2 * radius, 2 * radius, height);
 }
 
-//------------------------------------------------------------------------------
-void Cylinder::read(std::istream& ins)
-{
-    // Implement this function
+// Member functions
+void Cylinder::setRadius(double radius) {
+    this->radius = radius;
+    boundingBox.setUpperRightVertex(2 * radius, 2 * radius, height);
 }
 
-//------------------------------------------------------------------------------
-void Cylinder::display(std::ostream& outs) const
-{
-    // Implement this function
+void Cylinder::setHeight(double height) {
+    this->height = height;
+    boundingBox.setUpperRightVertex(2 * radius, 2 * radius, height);
 }
 
-//------------------------------------------------------------------------------
-void Cylinder::scale(double scalingFactor)
-{
-    // Implement this function
+void Cylinder::display() const {
+    Polyhedron::display(std::cout);
+    std::cout << "Radius: " << radius << " Height: " << height << std::endl;
+}
+
+void Cylinder::read(std::istream& ins) {
+    ins >> radius >> height;
+    boundingBox.setUpperRightVertex(2 * radius, 2 * radius, height);
+}
+
+Polyhedron* Cylinder::clone() const {
+    return new Cylinder(*this);
+}
+
+void Cylinder::scale(double scalingFactor) {
+    radius *= scalingFactor;
+    height *= scalingFactor;
+    boundingBox.scale(scalingFactor);
 }
