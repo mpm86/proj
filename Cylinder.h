@@ -1,88 +1,26 @@
-#ifndef CYLINDER_H_INCLUDED
-#define CYLINDER_H_INCLUDED
+#ifndef CYLINDER_H
+#define CYLINDER_H
 
 #include "Polyhedron.h"
+#include <iostream>
 
 class Cylinder : public Polyhedron {
-    private:
-        double height;
-        double radius;
+private:
+    double radius;
+    double height;
 
-    public:
-        /**
-         * Default Constructor
-         */
-        Cylinder();
+public:
+    // Constructors
+    Cylinder();
+    Cylinder(double radius, double height);
 
-        /**
-         * Construct a cylinder with specified height and radius
-         *
-         * @param r desired radius
-         * @param h desired height
-         */
-        Cylinder(double r, double h);
-
-        /**
-         * Destructor
-         */
-        ~Cylinder() = default;
-
-        // Use the compiler generated version
-        Cylinder(const Cylinder& src) = default;
-
-        // Use the compiler generated version
-        Cylinder& operator=(const Cylinder& rhs) = default;
-
-        /**
-         * Retrieve the radius
-         */
-        double getRadius() const;
-
-        /**
-         * Retrieve the height
-         */
-        double getHeight() const;
-
-        /**
-         * Update the radius
-         */
-        void setRadius(double r);
-
-        /**
-         * Update the height
-         */
-        void setHeight(double h);
-
-        /**
-         * Compute and return the diameter
-         */
-        double getDiameter() const;
-
-        virtual Polyhedron* clone() const;
-        virtual void read(std::istream& ins);
-        virtual void display(std::ostream& outs) const;
-        virtual void scale(double scalingFactor);
+    // Member functions
+    void setRadius(double radius);
+    void setHeight(double height);
+    void display() const;
+    void read(std::istream& ins);
+    Polyhedron* clone() const;
+    void scale(double scalingFactor);
 };
-
-//------------------------------------------------------------------------------
-inline
-double Cylinder::getRadius() const
-{
-    return this->radius;
-}
-
-//------------------------------------------------------------------------------
-inline
-double Cylinder::getHeight() const
-{
-    return this->height;
-}
-
-//------------------------------------------------------------------------------
-inline
-double Cylinder::getDiameter() const
-{
-    return 2 * radius;
-}
 
 #endif
