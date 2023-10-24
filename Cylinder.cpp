@@ -1,56 +1,42 @@
 #include "Cylinder.h"
-#include <iostream>
 
-// Existing Constructors
-Cylinder::Cylinder() : Cylinder(1, 1) {}
-Cylinder::Cylinder(double r, double h) : Polyhedron("Cylinder"), height(h), radius(r) {
+//------------------------------------------------------------------------------
+Cylinder::Cylinder()
+    :Cylinder(1, 1)
+{
+}
+
+//------------------------------------------------------------------------------
+Cylinder::Cylinder(double r, double h)
+    :Polyhedron("Cylinder"),
+     height(h),
+     radius(r)
+{
     double d = this->getDiameter();
     boundingBox.setUpperRightVertex(d, d, height);
+
+    // **Note** the upper-right vertex of the bounding box must be set to
+    // (diameter, diameter, height).
+    //
+    // The z-axis is treated as the height of the
+    // cylinder and the x-y plane is the "floor" where the circular face of the
+    // cylinder rests.
 }
 
-// Setters
-void Cylinder::setRadius(double r) {
-    radius = r;
-    // Update bounding box
-    double d = getDiameter();
-    boundingBox.setUpperRightVertex(d, d, height);
+//------------------------------------------------------------------------------
+void Cylinder::read(std::istream& ins)
+{
+    // Implement this function
 }
 
-void Cylinder::setHeight(double h) {
-    height = h;
-    // Update bounding box
-    double d = getDiameter();
-    boundingBox.setUpperRightVertex(d, d, height);
+//------------------------------------------------------------------------------
+void Cylinder::display(std::ostream& outs) const
+{
+    // Implement this function
 }
 
-// Display function
-void Cylinder::display(std::ostream& outs) const {
-    outs << "Cylinder with radius: " << radius << " and height: " << height << std::endl;
-}
-
-// Read function
-void Cylinder::read(std::istream& ins) {
-    ins >> radius >> height;
-    // Update bounding box
-    double d = getDiameter();
-    boundingBox.setUpperRightVertex(d, d, height);
-}
-
-// Clone function
-Polyhedron* Cylinder::clone() const {
-    return new Cylinder(*this);
-}
-
-// Scale function
-void Cylinder::scale(double scalingFactor) {
-    radius *= scalingFactor;
-    height *= scalingFactor;
-    // Update bounding box
-    double d = getDiameter();
-    boundingBox.setUpperRightVertex(d, d, height);
-}
-
-// Optional: Supplemental member function to calculate volume
-double Cylinder::calculateVolume() const {
-    return 3.14159 * radius * radius * height;
+//------------------------------------------------------------------------------
+void Cylinder::scale(double scalingFactor)
+{
+    // Implement this function
 }
