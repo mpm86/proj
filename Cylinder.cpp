@@ -1,28 +1,33 @@
-// Modified Cylinder.h
-
-#ifndef CYLINDER_H
-#define CYLINDER_H
-
-#include "Polyhedron.h"
+#include "Cylinder.h"
 #include <iostream>
 
-class Cylinder : public Polyhedron {
-private:
-    double _radius;  // Changed from radius to _radius
-    double _height;  // Changed from height to _height
+// Constructors
+Cylinder::Cylinder() : _radius(0), _height(0) {}
 
-public:
-    // Constructors
-    Cylinder();
-    Cylinder(double radius, double height);
+Cylinder::Cylinder(double radius, double height) : _radius(radius), _height(height) {}
 
-    // Member functions
-    void setRadius(double radius);
-    void setHeight(double height);
-    void display() const;
-    void read(std::istream& ins);
-    Polyhedron* clone() const;
-    void scale(double scalingFactor);
-};
+// Member functions
+void Cylinder::setRadius(double radius) {
+  _radius = radius;
+}
 
-#endif
+void Cylinder::setHeight(double height) {
+  _height = height;
+}
+
+void Cylinder::display() const {
+  std::cout << "[Cylinder] (" << _radius << ", " << _height << ")\n";
+}
+
+void Cylinder::read(std::istream& ins) {
+  ins >> _radius >> _height;
+}
+
+Polyhedron* Cylinder::clone() const {
+  return new Cylinder(*this);
+}
+
+void Cylinder::scale(double scalingFactor) {
+  _radius *= scalingFactor;
+  _height *= scalingFactor;
+}
