@@ -14,15 +14,15 @@ Cylinder::Cylinder(double r, double h)
     boundingBox.setUpperRightVertex(d, d, height);
 }
 
-double Cylinder::getRadius() const {  // Added this method
+double Cylinder::getRadius() const {
     return radius;
 }
 
-double Cylinder::getHeight() const {  // Added this method
+double Cylinder::getHeight() const {
     return height;
 }
 
-double Cylinder::getDiameter() const {  // Added this method
+double Cylinder::getDiameter() const {
     return 2 * radius;
 }
 
@@ -31,7 +31,6 @@ void Cylinder::setRadius(double r) {
     double d = getDiameter();
     boundingBox.setUpperRightVertex(d, d, height);
 }
-
 
 void Cylinder::setHeight(double h) {
     height = h;
