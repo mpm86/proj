@@ -28,12 +28,15 @@ double Cylinder::getDiameter() const {  // Added this method
 
 void Cylinder::setRadius(double r) {
     radius = r;
-    boundingBox.scale(r / getRadius());
+    double d = getDiameter();
+    boundingBox.setUpperRightVertex(d, d, height);
 }
+
 
 void Cylinder::setHeight(double h) {
     height = h;
-    boundingBox.scale(h / getHeight());
+    double d = getDiameter();
+    boundingBox.setUpperRightVertex(d, d, height);
 }
 
 void Cylinder::read(std::istream& ins) {
