@@ -4,34 +4,85 @@
 #include "Polyhedron.h"
 
 class Cylinder : public Polyhedron {
-private:
-    double height;
-    double radius;
+    private:
+        double height;
+        double radius;
 
-public:
-    Cylinder();
-    Cylinder(double r, double h);
-    ~Cylinder() = default;
-    Cylinder(const Cylinder& src) = default;
-    Cylinder& operator=(const Cylinder& rhs) = default;
+    public:
+        /**
+         * Default Constructor
+         */
+        Cylinder();
 
-    double getRadius() const;
-    double getHeight() const;
-    void setRadius(double r);
-    void setHeight(double h);
-    double getDiameter() const;
+        /**
+         * Construct a cylinder with specified height and radius
+         *
+         * @param r desired radius
+         * @param h desired height
+         */
+        Cylinder(double r, double h);
 
-    virtual Polyhedron* clone() const;
-    virtual void read(std::istream& ins);
-    virtual void display(std::ostream& outs) const;
-    virtual void scale(double scalingFactor);
+        /**
+         * Destructor
+         */
+        ~Cylinder() = default;
 
-    // Optional: Supplemental member function to calculate volume
-    double calculateVolume() const;
+        // Use the compiler generated version
+        Cylinder(const Cylinder& src) = default;
+
+        // Use the compiler generated version
+        Cylinder& operator=(const Cylinder& rhs) = default;
+
+        /**
+         * Retrieve the radius
+         */
+        double getRadius() const;
+
+        /**
+         * Retrieve the height
+         */
+        double getHeight() const;
+
+        /**
+         * Update the radius
+         */
+        void setRadius(double r);
+
+        /**
+         * Update the height
+         */
+        void setHeight(double h);
+
+        /**
+         * Compute and return the diameter
+         */
+        double getDiameter() const;
+
+        virtual Polyhedron* clone() const;
+        virtual void read(std::istream& ins);
+        virtual void display(std::ostream& outs) const;
+        virtual void scale(double scalingFactor);
 };
 
-inline double Cylinder::getRadius() const { return this->radius; }
-inline double Cylinder::getHeight() const { return this->height; }
-inline double Cylinder::getDiameter() const { return 2 * radius; }
+//------------------------------------------------------------------------------
+inline
+double Cylinder::getRadius() const
+{
+    return this->radius;
+}
+
+//------------------------------------------------------------------------------
+inline
+double Cylinder::getHeight() const
+{
+    return this->height;
+}
+
+//------------------------------------------------------------------------------
+inline
+double Cylinder::getDiameter() const
+{
+    return 2 * radius;
+}
 
 #endif
