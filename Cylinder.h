@@ -9,80 +9,24 @@ class Cylinder : public Polyhedron {
         double radius;
 
     public:
-        /**
-         * Default Constructor
-         */
         Cylinder();
-
-        /**
-         * Construct a cylinder with specified height and radius
-         *
-         * @param r desired radius
-         * @param h desired height
-         */
         Cylinder(double r, double h);
-
-        /**
-         * Destructor
-         */
         ~Cylinder() = default;
 
-        // Use the compiler generated version
         Cylinder(const Cylinder& src) = default;
-
-        // Use the compiler generated version
         Cylinder& operator=(const Cylinder& rhs) = default;
 
-        /**
-         * Retrieve the radius
-         */
         double getRadius() const;
-
-        /**
-         * Retrieve the height
-         */
         double getHeight() const;
+        double getDiameter() const;  // Added this line
 
-        /**
-         * Update the radius
-         */
         void setRadius(double r);
-
-        /**
-         * Update the height
-         */
         void setHeight(double h);
 
-        /**
-         * Compute and return the diameter
-         */
-        double getDiameter() const;
-
-        virtual Polyhedron* clone() const;
-        virtual void read(std::istream& ins);
-        virtual void display(std::ostream& outs) const;
-        virtual void scale(double scalingFactor);
+        virtual Polyhedron* clone() const override;
+        virtual void read(std::istream& ins) override;
+        virtual void display(std::ostream& outs) const override;
+        virtual void scale(double scalingFactor) override;
 };
-
-//------------------------------------------------------------------------------
-inline
-double Cylinder::getRadius() const
-{
-    return this->radius;
-}
-
-//------------------------------------------------------------------------------
-inline
-double Cylinder::getHeight() const
-{
-    return this->height;
-}
-
-//------------------------------------------------------------------------------
-inline
-double Cylinder::getDiameter() const
-{
-    return 2 * radius;
-}
 
 #endif

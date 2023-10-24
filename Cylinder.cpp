@@ -1,12 +1,10 @@
 #include "Cylinder.h"
 
-//------------------------------------------------------------------------------
 Cylinder::Cylinder()
     :Cylinder(1, 1)
 {
 }
 
-//------------------------------------------------------------------------------
 Cylinder::Cylinder(double r, double h)
     :Polyhedron("Cylinder"),
      height(h),
@@ -14,29 +12,45 @@ Cylinder::Cylinder(double r, double h)
 {
     double d = this->getDiameter();
     boundingBox.setUpperRightVertex(d, d, height);
-
-    // **Note** the upper-right vertex of the bounding box must be set to
-    // (diameter, diameter, height).
-    //
-    // The z-axis is treated as the height of the
-    // cylinder and the x-y plane is the "floor" where the circular face of the
-    // cylinder rests.
 }
 
-//------------------------------------------------------------------------------
-void Cylinder::read(std::istream& ins)
-{
-    // Implement this function
+double Cylinder::getRadius() const {  // Added this method
+    return radius;
 }
 
-//------------------------------------------------------------------------------
-void Cylinder::display(std::ostream& outs) const
-{
-    // Implement this function
+double Cylinder::getHeight() const {  // Added this method
+    return height;
 }
 
-//------------------------------------------------------------------------------
-void Cylinder::scale(double scalingFactor)
-{
-    // Implement this function
+double Cylinder::getDiameter() const {  // Added this method
+    return 2 * radius;
+}
+
+void Cylinder::setRadius(double r) {
+    radius = r;
+    boundingBox.scale(r / getRadius());
+}
+
+void Cylinder::setHeight(double h) {
+    height = h;
+    boundingBox.scale(h / getHeight());
+}
+
+void Cylinder::read(std::istream& ins) {
+    ins >> height >> radius;
+}
+
+void Cylinder::display(std::ostream& outs) const {
+    Polyhedron::display(outs);
+    outs << "Radius: " << radius << " Height: " << height;
+}
+
+void Cylinder::scale(double scalingFactor) {
+    radius *= scalingFactor;
+    height *= scalingFactor;
+    boundingBox.scale(scalingFactor);
+}
+
+Polyhedron* Cylinder::clone() const {
+    return new Cylinder(*this);
 }
