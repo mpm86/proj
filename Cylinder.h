@@ -1,3 +1,5 @@
+// Modified Cylinder.h
+
 #ifndef CYLINDER_H
 #define CYLINDER_H
 
@@ -6,8 +8,8 @@
 
 class Cylinder : public Polyhedron {
 private:
-    double radius;
-    double height;
+    double _radius;  // Changed from radius to _radius
+    double _height;  // Changed from height to _height
 
 public:
     // Constructors
