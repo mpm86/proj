@@ -1,33 +1,42 @@
 #include "Cylinder.h"
-#include <iostream>
 
-// Constructors
-Cylinder::Cylinder() : _radius(1), _height(1) {}
-
-Cylinder::Cylinder(double radius, double height) : _radius(radius), _height(height) {}
-
-// Member functions
-void Cylinder::setRadius(double radius) {
-  _radius = radius;
+//------------------------------------------------------------------------------
+Cylinder::Cylinder()
+    :Cylinder(1, 1)
+{
 }
 
-void Cylinder::setHeight(double height) {
-  _height = height;
+//------------------------------------------------------------------------------
+Cylinder::Cylinder(double r, double h)
+    :Polyhedron("Cylinder"),
+     height(h),
+     radius(r)
+{
+    double d = this->getDiameter();
+    boundingBox.setUpperRightVertex(d, d, height);
+
+    // **Note** the upper-right vertex of the bounding box must be set to
+    // (diameter, diameter, height).
+    //
+    // The z-axis is treated as the height of the
+    // cylinder and the x-y plane is the "floor" where the circular face of the
+    // cylinder rests.
 }
 
-void Cylinder::display() const {
-  std::cout << "[Cylinder] (" << _radius * 2 << ", " << _radius * 2 << ", " << _height << ")->Radius: " << _radius << " Height: " << _height << "\n";
+//------------------------------------------------------------------------------
+void Cylinder::read(std::istream& ins)
+{
+    // Implement this function
 }
 
-void Cylinder::read(std::istream& ins) {
-  ins >> _radius >> _height;
+//------------------------------------------------------------------------------
+void Cylinder::display(std::ostream& outs) const
+{
+    // Implement this function
 }
 
-Polyhedron* Cylinder::clone() const {
-  return new Cylinder(*this);
-}
-
-void Cylinder::scale(double scalingFactor) {
-  _radius *= scalingFactor;
-  _height *= scalingFactor;
+//------------------------------------------------------------------------------
+void Cylinder::scale(double scalingFactor)
+{
+    // Implement this function
 }
