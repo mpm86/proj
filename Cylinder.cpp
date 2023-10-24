@@ -2,7 +2,7 @@
 #include <iostream>
 
 // Constructors
-Cylinder::Cylinder() : _radius(0), _height(0) {}
+Cylinder::Cylinder() : _radius(1), _height(1) {}
 
 Cylinder::Cylinder(double radius, double height) : _radius(radius), _height(height) {}
 
@@ -16,7 +16,7 @@ void Cylinder::setHeight(double height) {
 }
 
 void Cylinder::display() const {
-  std::cout << "[Cylinder] (" << _radius << ", " << _height << ")\n";
+  std::cout << "[Cylinder] (" << _radius * 2 << ", " << _radius * 2 << ", " << _height << ")->Radius: " << _radius << " Height: " << _height << "\n";
 }
 
 void Cylinder::read(std::istream& ins) {
