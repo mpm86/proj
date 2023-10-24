@@ -40,6 +40,8 @@ void Cylinder::setHeight(double h) {
 
 void Cylinder::read(std::istream& ins) {
     ins >> height >> radius;
+    double d = getDiameter();
+    boundingBox.setUpperRightVertex(d, d, height);
 }
 
 void Cylinder::display(std::ostream& outs) const {
